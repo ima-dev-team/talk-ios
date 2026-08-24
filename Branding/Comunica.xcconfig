@@ -1,0 +1,27 @@
+//
+// Comunica.gov.ao - iOS Client
+//
+// SPDX-FileCopyrightText: 2026 IMA
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+
+// Reference values for the Comunica.gov.ao rebrand. NOT wired into the build
+// via baseConfigurationReference: two attempts (project-level, and later a
+// per-target wrapper that also #included the CocoaPods xcconfig) proved
+// unreliable on Xcode 26.6/"Swift Build" — xcodebuild -showBuildSettings
+// resolved the values correctly on one run and silently dropped them (along
+// with the target's own CocoaPods PODS_ROOT etc.) on a later run, with no
+// error, for the exact same scheme/config and no changes in between. Given
+// that, the values below are set as literal strings directly wherever they're
+// needed instead — same mechanism upstream already used for
+// PRODUCT_BUNDLE_IDENTIFIER, just our value, and it actually works reliably.
+//
+// Kept here as the single documented source of truth; keep it in sync by hand
+// with:
+//  - project.pbxproj: PRODUCT_BUNDLE_IDENTIFIER of NextcloudTalk, ShareExtension,
+//    NotificationServiceExtension, BroadcastUploadExtension, TalkIntents
+//  - *.entitlements: com.apple.security.application-groups
+//  - NextcloudTalk/Settings/NCAppBranding.m: bundleIdentifier / groupIdentifier
+
+PRODUCT_BUNDLE_IDENTIFIER_BASE = ao.gov.comunica.talk
+APP_GROUP_IDENTIFIER = group.ao.gov.comunica.talk

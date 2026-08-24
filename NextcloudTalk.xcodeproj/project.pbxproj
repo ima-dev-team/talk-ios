@@ -448,6 +448,7 @@
 		2CE726D92E982A6200BA2C0F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2CEA990828B8B5780029216A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2CEDA87E26EF91460044552B /* NextcloudTalk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NextcloudTalk-Bridging-Header.h"; sourceTree = "<group>"; };
+		FF528A11671A38AFCEE86C7D /* Comunica.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Comunica.xcconfig"; path = "Branding/Comunica.xcconfig"; sourceTree = "<group>"; };
 		342600BABD1AD1FCA48B5E59 /* Pods-NextcloudTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextcloudTalkTests/Pods-NextcloudTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4202C63030F0FFBB1C16D75E /* Pods-NextcloudTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk.debug.xcconfig"; sourceTree = "<group>"; };
 		4D4C7BF2F97F47B0D9094618 /* Pods-NextcloudTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk.release.xcconfig"; sourceTree = "<group>"; };
@@ -1021,6 +1022,8 @@
 		};
 		1F9629252E8E6A2100EC9BEE /* Calls */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Calls;
 			sourceTree = "<group>";
 		};
@@ -1048,6 +1051,8 @@
 		};
 		1F9629362E8E6B8D00EC9BEE /* Database */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Database;
 			sourceTree = "<group>";
 		};
@@ -1064,11 +1069,15 @@
 		};
 		1F9629412E8E6BEB00EC9BEE /* File sharing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "File sharing";
 			sourceTree = "<group>";
 		};
 		1F9629422E8E6BFD00EC9BEE /* Login */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -1082,6 +1091,8 @@
 		};
 		1F9629462E8E6C2300EC9BEE /* Media Viewer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "Media Viewer";
 			sourceTree = "<group>";
 		};
@@ -1120,11 +1131,15 @@
 		};
 		1F9629722E8E6CB000EC9BEE /* Screensharing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Screensharing;
 			sourceTree = "<group>";
 		};
 		1F9629732E8E6CC100EC9BEE /* Security */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Security;
 			sourceTree = "<group>";
 		};
@@ -1141,6 +1156,8 @@
 		};
 		1F9629792E8E6CEF00EC9BEE /* Siri */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Siri;
 			sourceTree = "<group>";
 		};
@@ -1169,6 +1186,8 @@
 		};
 		1F9629882E8E6E2900EC9BEE /* Sounds */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Sounds;
 			sourceTree = "<group>";
 		};
@@ -1323,6 +1342,7 @@
 		2C0574741EDD9E8E00D9E7F2 = {
 			isa = PBXGroup;
 			children = (
+				B8A4CB5DE23BD554EE4B4F07 /* Branding */,
 				1F20586F2CEBE4E200AAA673 /* NotificationServiceExtension */,
 				1F2058832CEBE4E700AAA673 /* ShareExtension */,
 				1F2058A32CEBE4EA00AAA673 /* BroadcastUploadExtension */,
@@ -1335,6 +1355,14 @@
 				1F9629882E8E6E2900EC9BEE /* Sounds */,
 				926177EBCFB97EA1273DEDB9 /* Pods */,
 			);
+			sourceTree = "<group>";
+		};
+		B8A4CB5DE23BD554EE4B4F07 /* Branding */ = {
+			isa = PBXGroup;
+			children = (
+				FF528A11671A38AFCEE86C7D /* Comunica.xcconfig */,
+			);
+			path = Branding;
 			sourceTree = "<group>";
 		};
 		2C05747E1EDD9E8E00D9E7F2 /* Products */ = {
@@ -2130,13 +2158,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2151,13 +2175,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2576,7 +2596,7 @@
 				MARKETING_VERSION = 24.0.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.TalkIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk.TalkIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2617,7 +2637,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 24.0.2;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.TalkIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk.TalkIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2707,7 +2727,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BroadcastUploadExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Nextcloud Talk";
+				INFOPLIST_KEY_CFBundleDisplayName = "Comunica.gov.ao";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2718,7 +2738,7 @@
 				MARKETING_VERSION = 24.0.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.BroadcastUploadExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk.BroadcastUploadExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -2752,7 +2772,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BroadcastUploadExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Nextcloud Talk";
+				INFOPLIST_KEY_CFBundleDisplayName = "Comunica.gov.ao";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2762,7 +2782,7 @@
 				);
 				MARKETING_VERSION = 24.0.2;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.BroadcastUploadExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk.BroadcastUploadExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -2925,7 +2945,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 24.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -2970,7 +2990,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 24.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -3057,7 +3077,7 @@
 				MARKETING_VERSION = 24.0.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk.ShareExtension;
 				PRODUCT_NAME = ShareExtension;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3147,7 +3167,7 @@
 				);
 				MARKETING_VERSION = 24.0.2;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk.ShareExtension;
 				PRODUCT_NAME = ShareExtension;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3219,7 +3239,7 @@
 				MARKETING_VERSION = 24.0.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3290,7 +3310,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 24.0.2;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ao.gov.comunica.talk.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;

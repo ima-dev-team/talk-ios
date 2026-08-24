@@ -18,17 +18,27 @@ typedef enum NCTextColorStyle {
 
 #pragma mark - App configuration
 
-NSString * const talkAppName = @"Nextcloud Talk";
+NSString * const talkAppName = @"Comunica.gov.ao";
 NSString * const filesAppName = @"Nextcloud";
-NSString * const copyright = @"© 2026 Nextcloud GmbH";
-NSString * const bundleIdentifier = @"com.nextcloud.Talk";
-NSString * const groupIdentifier = @"group.com.nextcloud.Talk";
+// TODO(legal): confirmar a entidade/redacção exacta a mostrar no ecrã "Sobre".
+NSString * const copyright = @"© 2026 IMA";
+// Manter alinhado à mão com PRODUCT_BUNDLE_IDENTIFIER em project.pbxproj e com
+// Branding/Comunica.xcconfig (ver nota nesse ficheiro sobre porque não é lido
+// automaticamente a partir daí).
+NSString * const bundleIdentifier = @"ao.gov.comunica.talk";
+NSString * const groupIdentifier = @"group.ao.gov.comunica.talk";
+// Sem SSO/import com a app Nextcloud Files oficial (decisão tomada — ver
+// memória de projecto "ima-talk-brand-identifiers"); useAppsGroup = NO abaixo
+// desliga os dois usos deste grupo (NCSettingsController, LoginViewController).
 NSString * const appsGroupIdentifier = @"group.com.nextcloud.apps";
-NSString * const pushNotificationServer = @"https://push-notifications.nextcloud.com";
-NSString * const privacyURL = @"https://nextcloud.com/privacy";
-BOOL const isBrandedApp = NO;
+// TODO(push-proxy): domínio de placeholder até a Fase 2 do checklist (push
+// proxy próprio) estar concluída — enquanto apontar para aqui, push não chega.
+NSString * const pushNotificationServer = @"https://push.comunica.gov.ao";
+// TODO(legal): substituir por URL real antes de publicar.
+NSString * const privacyURL = @"";
+BOOL const isBrandedApp = YES;
 BOOL const multiAccountEnabled = YES;
-BOOL const useAppsGroup = YES;
+BOOL const useAppsGroup = NO;
 BOOL const forceDomain = NO;
 NSString * const domain = nil;
 NSString * const appAlternateVersion = @"";
