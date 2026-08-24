@@ -22,10 +22,10 @@
           "image-name" : "Talk-white.svg",
           "name" : "Talk-white",
           "position" : {
-            "scale" : 35,
+            "scale" : 30,
             "translation-in-points" : [
               0,
-              -11
+              0
             ]
           }
         }
