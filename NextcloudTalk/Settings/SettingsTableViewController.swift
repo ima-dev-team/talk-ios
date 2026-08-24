@@ -209,9 +209,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         options.append(AboutSection.kAboutSectionPrivacy.rawValue)
 
         // Source code
-        if !isBrandedApp.boolValue {
-            options.append(AboutSection.kAboutSectionSourceCode.rawValue)
-        }
+        // Always shown regardless of isBrandedApp: upstream hides this for
+        // Nextcloud's own commercial branded clients, whose GPLv3 source offer
+        // is handled through their contract instead. For our fork this link
+        // *is* the GPLv3 source offer, so it must stay visible.
+        options.append(AboutSection.kAboutSectionSourceCode.rawValue)
 
         return options
     }
@@ -772,7 +774,9 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
                 self.present(safariVC, animated: true, completion: nil)
             }
         case AboutSection.kAboutSectionSourceCode.rawValue:
-            let safariVC = SFSafariViewController(url: URL(string: "https://github.com/nextcloud/talk-ios")!)
+            // GPLv3 source offer for this fork; confirm the repo is public
+            // before publishing the app (see rebranding-talk-checklist.md).
+            let safariVC = SFSafariViewController(url: URL(string: "https://github.com/ima-dev-team/talk-ios")!)
             self.present(safariVC, animated: true, completion: nil)
         default:
             break
