@@ -30,7 +30,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.nextcloud.Talk</string>
+			<string>ao.gov.comunica.talk</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>nextcloudtalk</string>

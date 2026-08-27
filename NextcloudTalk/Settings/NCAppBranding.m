@@ -31,8 +31,8 @@ NSString * const groupIdentifier = @"group.ao.gov.comunica.talk";
 // memória de projecto "ima-talk-brand-identifiers"); useAppsGroup = NO abaixo
 // desliga os dois usos deste grupo (NCSettingsController, LoginViewController).
 NSString * const appsGroupIdentifier = @"group.com.nextcloud.apps";
-// TODO(push-proxy): domínio de placeholder até a Fase 2 do checklist (push
-// proxy próprio) estar concluída — enquanto apontar para aqui, push não chega.
+// Push proxy próprio, validado ponta-a-ponta em produção (27 Ago 2026) — ver
+// memória de projecto "ima-talk-push-proxy-nc-server-not-dispatching".
 NSString * const pushNotificationServer = @"https://push.comunica.gov.ao";
 // TODO(legal): substituir por URL real antes de publicar.
 NSString * const privacyURL = @"";
