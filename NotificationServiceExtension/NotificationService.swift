@@ -112,6 +112,19 @@ class NotificationService: UNNotificationServiceExtension {
             return
         }
 
+        if pushNotification.type == .NCPushNotificationTypeDelete
+            || pushNotification.type == .NCPushNotificationTypeDeleteAll
+            || pushNotification.type == .NCPushNotificationTypeDeleteMultiple {
+            // The server sends this to tell us that one or more notifications are no longer
+            // valid (e.g. the message was already read, possibly from this same device).
+            // It never carries a subject, so - unlike every other type - it must not increase
+            // the unread badge or produce a "new message" alert. Falling through to the
+            // generic handling below used to increase the badge instead of decreasing it and
+            // show a blank notification for every one of these.
+            self.handleDeleteNotification(pushNotification, forAccount: account)
+            return
+        }
+
         // TODO: Can we just use the managed object we already had before?
         try? RLMRealm.default().transaction {
             let query = NSPredicate(format: "accountId = %@", account.accountId)
@@ -172,6 +185,73 @@ class NotificationService: UNNotificationServiceExtension {
             default:
                 self.showBestAttemptNotification()
             }
+        }
+    }
+
+    private func handleDeleteNotification(_ pushNotification: NCPushNotification, forAccount account: TalkAccount) {
+        var notificationIdsToRemove: [Int] = []
+
+        switch pushNotification.type {
+        case .NCPushNotificationTypeDelete:
+            notificationIdsToRemove = [pushNotification.notificationId]
+        case .NCPushNotificationTypeDeleteMultiple:
+            notificationIdsToRemove = (pushNotification.notificationIds as? [NSNumber])?.map { $0.intValue } ?? []
+        default:
+            // .NCPushNotificationTypeDeleteAll -> no specific ids, everything for this account goes
+            break
+        }
+
+        // Bring the badge back down for the notification(s) this push refers to, instead of the
+        // generic "+= 1" every other push type gets.
+        try? RLMRealm.default().transaction {
+            let query = NSPredicate(format: "accountId = %@", account.accountId)
+            guard let managedAccount = TalkAccount.objects(with: query).firstObject() as? TalkAccount else { return }
+
+            if pushNotification.type == .NCPushNotificationTypeDeleteAll {
+                managedAccount.unreadBadgeNumber = 0
+            } else {
+                let removedCount = max(notificationIdsToRemove.count, 1)
+                managedAccount.unreadBadgeNumber = max(managedAccount.unreadBadgeNumber - removedCount, 0)
+            }
+
+            managedAccount.unreadNotification = managedAccount.unreadBadgeNumber > 0
+        }
+
+        let updatedBadgeCount = NCDatabaseManager.sharedInstance().numberOfUnreadNotifications()
+        let accountId = account.accountId
+        let deleteType = pushNotification.type
+
+        // Also remove the stale delivered notification(s) from the system notification center,
+        // so they don't linger there after the badge already went down.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getDeliveredNotifications { notifications in
+            let identifiersToRemove = notifications.filter { notification in
+                guard let notificationAccountId = notification.request.content.userInfo["accountId"] as? String,
+                      notificationAccountId == accountId else { return false }
+
+                if deleteType == .NCPushNotificationTypeDeleteAll {
+                    return true
+                }
+
+                guard let notificationId = notification.request.content.userInfo["notificationId"] as? Int else { return false }
+                return notificationIdsToRemove.contains(notificationId)
+            }.map { $0.request.identifier }
+
+            if !identifiersToRemove.isEmpty {
+                notificationCenter.removeDeliveredNotifications(withIdentifiers: identifiersToRemove)
+            }
+
+            // Don't turn this into a visible "new message" alert: keep the generic, non-empty
+            // placeholder that was already set at the top of didReceive, just silence it and
+            // sync the badge to the corrected value.
+            self.bestAttemptContent?.sound = nil
+            self.bestAttemptContent?.badge = updatedBadgeCount as NSNumber
+
+            if #available(iOS 15.0, *) {
+                self.bestAttemptContent?.interruptionLevel = .passive
+            }
+
+            self.showBestAttemptNotification()
         }
     }
 
