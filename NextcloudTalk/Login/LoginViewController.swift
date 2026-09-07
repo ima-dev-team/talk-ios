@@ -11,7 +11,7 @@ import NextcloudKit
 }
 
 @objcMembers
-class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateDelegate, DetailedOptionsSelectorTableViewControllerDelegate, AuthenticationViewControllerDelegate, QRScannerViewControllerDelegate {
+class LoginViewController: UIViewController, CCCertificateDelegate, DetailedOptionsSelectorTableViewControllerDelegate, AuthenticationViewControllerDelegate, QRScannerViewControllerDelegate {
 
     weak var delegate: LoginViewControllerDelegate?
 
@@ -19,9 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
     var importedNextcloudFilesAccounts: [NKShareAccounts.DataAccounts] = []
 
     @IBOutlet weak var appLogoImageView: UIImageView!
-    @IBOutlet weak var serverTextField: UITextField!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak var serverLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var importAccountButton: UIButton!
     @IBOutlet weak var qrCodeButton: UIButton!
@@ -50,25 +48,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
 
         // App logo
         self.appLogoImageView.image = UIImage(named: "loginLogo")
-
-        // Server TextField
-        serverTextField.delegate = self
-        serverTextField.textColor = NCAppBranding.brandTextColor()
-        serverTextField.tintColor = NCAppBranding.brandTextColor()
-        serverTextField.layer.borderColor = NCAppBranding.brandTextColor().cgColor
-        serverTextField.layer.borderWidth = 1
-        serverTextField.layer.cornerRadius = 8
-        serverTextField.layer.masksToBounds = true
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
-        serverTextField.leftView = paddingView
-        serverTextField.leftViewMode = .always
-        serverTextField.rightView = paddingView
-        serverTextField.rightViewMode = .always
-        serverTextField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Server address https://…", comment: ""),
-            attributes: [.foregroundColor: NCAppBranding.brandTextColor().withAlphaComponent(0.5)])
-        serverLabel.textColor = NCAppBranding.brandTextColor()
-        serverLabel.text = NSLocalizedString("This is the web address you use to access your server in your web browser.", comment: "")
 
         // Login button
         loginButton.setTitle(NSLocalizedString("Log in", comment: ""), for: .normal)
@@ -106,11 +85,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
 
         // Check for Nextcloud Files app accounts
         checkFilesAppAccounts()
-
-        // Add tap gesture recognizer to dismiss keyboard
-        view.addGestureRecognizer(
-            UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        )
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -127,28 +101,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         loginButtonPressed(self)
     }
 
-    // MARK: - UITextField delegate
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        startLoginProcess()
-        return true
-    }
-
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-
     // MARK: - Login
 
     func startLoginProcess() {
-        guard let serverTextFieldText = serverTextField.text?.trimmingCharacters(in: .whitespaces),
-              !serverTextFieldText.isEmpty else {
-            serverTextField.becomeFirstResponder()
-            return
-        }
-
-        startLoginProcess(serverURL: serverTextFieldText, user: nil)
+        startLoginProcess(serverURL: domain, user: nil)
     }
 
     func startLoginProcess(serverURL: String, user: String?) {
@@ -171,9 +127,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
                 message: NSLocalizedString("Please check that you entered a valid server address.", comment: ""))
             return
         }
-
-        // Set normalized server URL string in text field
-        serverTextField.text = normalizedServerURL
 
         // Remove stored cookies
         HTTPCookieStorage.shared.cookies?.forEach { cookie in
@@ -307,9 +260,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
 
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: {[weak self] _ in
-            self?.serverTextField.becomeFirstResponder()
-        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
         self.present(alert, animated: true)
     }
 

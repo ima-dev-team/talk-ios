@@ -40,7 +40,10 @@ BOOL const isBrandedApp = YES;
 BOOL const multiAccountEnabled = YES;
 BOOL const useAppsGroup = NO;
 BOOL const forceDomain = NO;
-NSString * const domain = nil;
+// Servidor único da app: o ecrã de login já não pede o endereço, o botão
+// "Entrar" usa sempre este valor. forceDomain fica NO porque continuamos a
+// mostrar o ecrã de login (logo + botões Entrar/QR), só sem o campo de texto.
+NSString * const domain = @"https://gov.ao";
 NSString * const appAlternateVersion = @"";
 
 + (NSString *)getAppVersionString
