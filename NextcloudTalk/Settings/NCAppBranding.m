@@ -60,7 +60,11 @@ NSString * const appAlternateVersion = @"";
 
 NSString * const brandColorHex = @"#0082C9";
 NSString * const brandTextColorHex = @"#FFFFFF";
-BOOL const customNavigationLogo = NO;
+// YES para que o logo gov.ao mantenha as suas cores reais (azul/branco) em vez
+// de ser re-tintado a uma única cor — no iOS 26+ o comportamento por omissão
+// força UIImageRenderingModeAlwaysTemplate, e nas versões antigas troca para
+// navigationLogoDark consoante o tema; customNavigationLogo=YES desliga as duas.
+BOOL const customNavigationLogo = YES;
 BOOL const useServerThemimg = YES;
 
 + (UIColor *)brandColor
