@@ -26,6 +26,12 @@ Ao utilizar o Talk gov.ao, podemos recolher e tratar os seguintes dados:
   exemplo, participantes e duração) quando utiliza essa funcionalidade.
 - **Token de dispositivo (push)** — um identificador técnico do seu
   dispositivo, usado exclusivamente para lhe entregar notificações.
+- **Localização** — apenas quando ativa, dentro de uma conversa, a opção de
+  partilhar a sua localização. Não recolhemos localização em nenhum outro
+  momento.
+- **Contactos** — apenas se ativar, nas Definições, a sincronização de
+  contactos, para o ajudar a encontrar colegas que já usam o Talk gov.ao.
+  Esta funcionalidade está desativada por predefinição.
 - **Dados técnicos** — informação básica do dispositivo e da aplicação
   (por exemplo, versão do sistema operativo), necessária para o
   funcionamento e diagnóstico de problemas.
